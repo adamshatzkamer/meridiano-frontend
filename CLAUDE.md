@@ -4,11 +4,12 @@ A Vite + React application for viewing news briefings and articles, powered by A
 
 ## Before using Playwright MCP interactively
 
-1. Start backend: `cd ../meridiano-backend && pnpm dev`
+1. Start backend: `cd ../meridiano-nestjs && pnpm start:dev`
 2. Start frontend: `pnpm dev`
 
 ## General repo rules
 
-- Issues are tracked in this repo's GitHub Issues via the `gh` CLI. See `docs/agents/issue-tracker.md`.
-- This repo uses the default canonical triage labels. See `docs/agents/triage-labels.md`.
-- This repo is configured as single-context. See `docs/agents/domain.md`.
+- When you need the architecture, the component inventory or the tech stack, read [docs index](./docs/index.md)
+- Before exploring the codebase, or when naming a domain concept, read [domain](./docs/agents/domain.md)
+- When creating, reading, or commenting on an issue, use [issue-tracker](./docs/agents/issue-tracker.md)
+- When applying a triage label to an issue, use [triage-labels](./docs/agents/triage-labels.md)
