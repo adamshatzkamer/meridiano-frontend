@@ -13,7 +13,7 @@ import { format } from "date-fns";
 import DOMPurify from "dompurify";
 import { Bookmark, BookmarkCheck, ChevronDown, ChevronUp, Loader2, Pencil } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router";
 
 export default function ArticleDetail() {
   const { id } = useParams();
@@ -126,7 +126,7 @@ export default function ArticleDetail() {
       </div>
 
       {/* Main content */}
-      <article className="flex-1 min-w-0 max-w-3xl">
+      <article className="flex-1 min-w-0">
         <BackButton fallback="/articles" />
         <p className="text-xs font-medium uppercase tracking-widest text-primary mb-4">{article.feed_source}</p>
 
@@ -174,15 +174,15 @@ export default function ArticleDetail() {
         </div>
 
         <div className="border-t border-border pt-6 mb-6">
-          <div className="w-full aspect-video relative bg-gray-100 dark:bg-gray-900 mb-6">
+          <div className="mb-6">
             <a
               href={article.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full h-full"
+              className="block"
             >
 
-              <img src={displayImage} alt={article.title} className="w-full rounded-lg object-cover mb-6 max-h-96" />
+              <img src={displayImage} alt={article.title} className="w-full max-h-96 rounded-lg object-cover" />
             </a>
           </div>
         </div>
@@ -205,18 +205,25 @@ export default function ArticleDetail() {
           <NoteEditor sourceType="article" sourceId={article.id} note={article.note} mode="expanded" />
         </div>
 
-        <div>
-          <h2 className="text-lg sm:text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">AI Summary</h2>
+        {sanitizedProcessedContentHtml && (
+          <div>
+            <h2 className="text-lg sm:text-xl font-semibold text-blue-600 dark:text-blue-400 mb-4">AI Summary</h2>
 
-          <div className="prose max-w-none mt-6 rounded-lg border border-border bg-card p-4 mb-6"
-            dangerouslySetInnerHTML={{ __html: sanitizedProcessedContentHtml }}
-          />
-        </div>
+            <div className="prose max-w-none mt-6 rounded-lg border border-border bg-card p-4 mb-6"
+              dangerouslySetInnerHTML={{ __html: sanitizedProcessedContentHtml }}
+            />
+          </div>
+        )}
 
         {article.content_html && (
-          <div className="prose prose-lg mt-6"
-            dangerouslySetInnerHTML={{ __html: sanitizedContentHtml }}>
-          </div>
+          <section className="mt-6">
+            <h2 className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-4">
+              Full Article
+            </h2>
+            <div className="prose prose-sm max-w-none"
+              dangerouslySetInnerHTML={{ __html: sanitizedContentHtml }}>
+            </div>
+          </section>
         )}
 
         {related.length > 0 && (

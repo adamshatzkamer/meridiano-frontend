@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { MemoryRouter } from 'react-router-dom';
+import { MemoryRouter } from 'react-router';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import type { ArticleDetailResponse } from '@/types';
 import ArticleDetailPage from './ArticleDetailPage';
@@ -8,8 +8,8 @@ import ArticleDetailPage from './ArticleDetailPage';
 const mockGenerateAudio = vi.fn();
 let mockArticleData: ArticleDetailResponse;
 
-vi.mock('react-router-dom', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('react-router-dom')>();
+vi.mock('react-router', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-router')>();
   return {
     ...actual,
     useParams: () => ({ id: 'art-1' }),
@@ -104,5 +104,11 @@ describe('ArticleDetailPage audio section (AC3, AC5)', () => {
     renderWithProviders();
     expect(screen.getByRole('heading', { name: /note/i })).toBeInTheDocument();
     expect(screen.getByDisplayValue('Existing note')).toBeInTheDocument();
+  });
+
+  it('hides the AI Summary until the article is processed', () => {
+    mockArticleData.article.processed_content_html = null;
+    renderWithProviders();
+    expect(screen.queryByRole('heading', { name: /ai summary/i })).not.toBeInTheDocument();
   });
 });

@@ -13,9 +13,9 @@ import { useAudioJobs, useTranscriptions } from "@/hooks/useApi";
 import type { Category } from "@/types";
 import { audioJobKey, buildAudioJobMap, getAudioBadgeState } from "@/utils/audio-badge";
 import { format } from "date-fns";
-import { ChevronDown, Loader2, Pencil, Plus, Youtube } from "lucide-react";
+import { ChevronDown, Loader2, Pencil, Plus, Tv } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 export default function YoutubeTranscriptionsPage() {
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -90,7 +90,7 @@ export default function YoutubeTranscriptionsPage() {
         onOpenChange={(open) => !open && setEditingChannel(null)}
       />
 
-      {grouped.length === 0 && <EmptyState icon={Youtube} title="No transcriptions found." />}
+      {grouped.length === 0 && <EmptyState icon={Tv} title="No transcriptions found." />}
 
       <div className="space-y-4">
         {grouped.map(({ channelId, channelName, videos: channelVideos }) => {

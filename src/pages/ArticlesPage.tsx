@@ -22,7 +22,7 @@ import { toast } from "@/utils/toast";
 import { audioJobKey, buildAudioJobMap, getAudioBadgeState } from "@/utils/audio-badge";
 import { Archive, FileText, Loader2, Plus } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 interface ArticlesPageProps {
   // The Archive view is this same page with a different scope. Reusing it means

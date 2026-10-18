@@ -25,7 +25,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router";
 import ThemeToggle from "./ThemeToggle";
 
 type SidebarContextValue = {
@@ -102,7 +102,7 @@ function DrawerLink({ item, onClick }: { item: NavItem; onClick: () => void }) {
 function CollapsibleSidebar() {
   const { pinned, setPinned } = useContext(SidebarContext);
   const [hovered, setHovered] = useState(false);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const timeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const { logout } = useAuth();
   const user = useUser();
   const navigate = useNavigate();

@@ -25,7 +25,7 @@ import { toast } from "@/utils/toast";
 import { format } from "date-fns";
 import { Check, FileText, Loader2, Sparkles, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 type Status = "idle" | "generating" | "done" | "error";
 
