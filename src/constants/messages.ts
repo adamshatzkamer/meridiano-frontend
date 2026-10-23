@@ -1,22 +1,8 @@
 export const MESSAGES = {
   SUCCESS: {
-    LOGGED_IN: 'Logged in successfully',
-    CHANNEL_UPDATED: 'Channel updated successfully!',
-    CHANNEL_CREATED: 'Channel created successfully!',
-    TRANSCRIPTION_DELETED: 'Transcription deleted successfully',
-    ARTICLE_ADDED: 'Article added successfully!',
-    ARTICLE_DELETED: 'Article deleted successfully',
-    ARTICLE_BOOKMARKED: 'Article bookmarked',
-    ARTICLE_UNBOOKMARKED: 'Bookmark removed',
     ARTICLE_ARCHIVED: 'Article archived',
     ARTICLE_UNARCHIVED: 'Article restored',
-    LOGGED_OUT: 'Logged out successfully',
-    MARKDOWN_UPLOADED: 'Markdown file uploaded successfully! Article will be processed shortly.',
     AUDIO_GENERATION_QUEUED: 'Audio is being generated. Please refresh the page soon.',
-    CATEGORY_CREATED: 'Category created successfully!',
-    CATEGORY_RENAMED: 'Category renamed successfully!',
-    CATEGORY_DELETED: 'Category deleted successfully',
-    CHANNEL_CATEGORIES_UPDATED: 'Categories updated successfully!',
   },
 
   ERROR: {

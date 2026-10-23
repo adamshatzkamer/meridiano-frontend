@@ -25,6 +25,24 @@
   @apply font-serif;
 }
 
+/* Maps react-toastify's light and dark toast themes to the theme tokens, set on the container root so they win over the library's `:root` defaults. */
+.Toastify {
+  --toastify-font-family: "Inter", system-ui, sans-serif;
+  --toastify-toast-bd-radius: var(--radius);
+  --toastify-color-light: hsl(var(--popover));
+  --toastify-color-dark: hsl(var(--popover));
+  --toastify-text-color-light: hsl(var(--popover-foreground));
+  --toastify-text-color-dark: hsl(var(--popover-foreground));
+  --toastify-icon-color-success: hsl(var(--primary));
+  --toastify-icon-color-error: hsl(var(--destructive));
+  --toastify-icon-color-info: hsl(var(--muted-foreground));
+  --toastify-icon-color-warning: hsl(var(--primary));
+}
+
+.Toastify__toast {
+  border: 1px solid hsl(var(--border));
+}
+
 @layer base {
   * {
     @apply border-border;

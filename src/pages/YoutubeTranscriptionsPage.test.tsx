@@ -120,7 +120,6 @@ function renderPage() {
 describe("YoutubeTranscriptionsPage categories", () => {
   beforeEach(() => {
     fetchMock.mockReset();
-    vi.mocked(toast.success).mockReset();
     vi.mocked(toast.error).mockReset();
   });
 
@@ -170,7 +169,6 @@ describe("YoutubeTranscriptionsPage categories", () => {
         }),
       ),
     );
-    await waitFor(() => expect(toast.success).toHaveBeenCalled());
     await waitFor(() => expect(screen.queryByText("Edit Categories")).not.toBeInTheDocument());
   });
 
