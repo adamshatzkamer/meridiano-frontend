@@ -66,8 +66,7 @@ pnpm dev
 ```
 src/
   components/          # React components
-    Navbar.tsx        # Navigation bar
-    Providers.tsx     # Context providers
+    Layout.tsx        # App shell and navigation
     ui/               # UI components (shadcn/ui style)
   contexts/           # React contexts
     AuthContext.tsx   # Authentication context
