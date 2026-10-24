@@ -15,7 +15,7 @@ You are one implementer run of the factory described in `docs/agents/factory.md`
 4. **Branch.** `git checkout -b claude/issue-<n>-<slug> origin/main`. The slug is the issue title, lowercase, hyphens, at most 5 words.
 5. **Build, test first.** One test per acceptance criterion, written before the code that satisfies it. Run `pnpm typecheck && pnpm lint && pnpm test` and iterate until all three pass.
 6. **Commit and push.** One or more commits with a conventional subject in the repo's style (for example `fix(modals): submit on Enter`). `git push -u origin claude/issue-<n>-<slug>`.
-7. **Open the draft PR.** `gh pr create --draft --title "<issue title>" --body-file <file>` where the body has, in order: one paragraph on the problem, one paragraph on the change, the line `Closes #<n>`, and the closing line `Built by claude-opus-5-5 in a Claude Code cloud routine (factory-implement).`
+7. **Open the draft PR.** `gh pr create --draft --label factory --title "<issue title>" --body-file <file>` where the body has, in order: one paragraph on the problem, one paragraph on the change, the line `Closes #<n>`, and the closing line `Built by claude-opus-5-5 in a Claude Code cloud routine (factory-implement).`
 8. **Blocked** (missing context, a test that cannot pass, an external dependency): `gh issue comment <n>` with a body whose first line is `**Factory implement**` and which names the blocker, then `gh issue edit <n> --remove-label agent-in-progress --add-label ready-for-human`. Push nothing. Stop.
 
 ## Rules

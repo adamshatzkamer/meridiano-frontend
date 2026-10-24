@@ -10,7 +10,7 @@ You are one rework run of the factory described in `docs/agents/factory.md`. You
 ## Steps, in order
 
 1. **Find the PR.** Use the PR number from the routine payload if present. Otherwise run `gh pr list --label needs-rework --state open --json number,headRefName --jq 'sort_by(.number) | .[0]'`. None: print `nothing to rework` and stop.
-2. **Scope check.** Stop unless `headRefName` starts with `claude/`.
+2. **Scope check.** `gh pr view <pr> --json labels --jq '[.labels[].name] | index("factory")'`. Stop unless the result is a number: a PR without the `factory` label is not factory work, whatever its branch is called.
 3. **Claim it, first write.** `gh pr edit <pr> --remove-label needs-rework`.
 4. **Read the findings.** The newest PR comment containing `<!-- factory-review: fail -->`; its numbered list is your whole scope. Let k be the count of comments containing that marker.
 5. **Fix.** Check out the head branch (`gh pr checkout <pr>`), fix each finding, run `pnpm typecheck && pnpm lint && pnpm test` until all pass, commit `fix: address factory review (round <k>)`, push.

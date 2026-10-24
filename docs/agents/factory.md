@@ -17,7 +17,7 @@ The factory is the set of unattended runs that turn `ready-for-agent` issues int
 | Task | Trigger | Does | Triggers next | Human re-entry |
 | --- | --- | --- | --- | --- |
 | Implement | clock routine, twice a day; takes the lowest-numbered `ready-for-agent` issue | swaps the label to `agent-in-progress`, builds until typecheck, lint and tests pass, opens a draft PR with `Closes #n` | PR opened event starts review | blocked: comment plus `ready-for-human` |
-| Review | PR opened or synchronize on a `claude/*` branch | reads the diff cold against the repo standards and the issue; comments pass or fail | fail: labels `needs-rework`; pass: marks the PR ready and ends | Ana merges |
+| Review | PR opened or synchronize on a PR labelled `factory` | reads the diff cold against the repo standards and the issue; comments pass or fail | fail: labels `needs-rework`; pass: marks the PR ready and ends | Ana merges |
 | Rework | PR labelled `needs-rework` | fixes only the findings of the last failed review, pushes, drops the label | synchronize starts review again | after 3 failed reviews, `ready-for-human` |
 
 Skills: `.claude/skills/factory-implement/SKILL.md`, `.claude/skills/factory-review/SKILL.md`, `.claude/skills/factory-rework/SKILL.md`.
@@ -26,6 +26,7 @@ Skills: `.claude/skills/factory-implement/SKILL.md`, `.claude/skills/factory-rev
 
 | Label | Set by | Cleared by |
 | --- | --- | --- |
+| `factory` (on the PR) | implement, when it opens the PR | nobody; review and rework act only on PRs that carry it, so a PR from any other `claude/*` session is left alone |
 | `ready-for-agent` | Ana | implement, when it takes the issue |
 | `agent-in-progress` | implement, as its first write | merging the PR closes the issue; implement clears it when blocked |
 | `needs-rework` | review, on a fail | rework, as its first write |
@@ -40,6 +41,6 @@ Every comment a run writes opens with a hidden marker line (review only: `<!-- f
 ## Brakes
 
 - Automated checks: `pnpm typecheck && pnpm lint && pnpm test` inside every run, and the "Test and Lint" workflow on every PR.
-- Automated review: the review task, on every push to a `claude/*` branch.
+- Automated review: the review task, on every push to a PR labelled `factory`.
 - Human review: Ana reads and merges every PR. Nothing merges on its own.
 - Cap: after 3 failed reviews on one PR the loop stops and the PR waits for Ana.
